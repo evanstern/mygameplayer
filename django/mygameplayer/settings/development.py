@@ -23,5 +23,15 @@ INTERNAL_IPS += [
     '127.0.0.1',
 ]
 
+STATICFILES_DIRS += [
+    os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'webapp/.tmp/')
+]
+
 DEBUG = True
 TEMPLATE_DEBUG = True
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'evanmicahstern@gmail.com'
+EMAIL_HOST_PASSWORD = 'mpldzpdaclxhqmhi'
+EMAIL_PORT = 587

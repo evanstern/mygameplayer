@@ -1,0 +1,16 @@
+<form id="login-form" action="{% url 'login' %}" method="post">
+  {% csrf_token %}
+  <div class="{% if form.non_field_errors %}has-error{% endif %}">{{ form.non_field_errors }}</div>
+  <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+  <label for="{{ form.username.id_for_label }}">{{ form.username.label }}:</label>
+  {{ form.username }}
+  {{ form.username.errors }}
+  </div>
+  <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+  <label for="{{ form.password.id_for_label }}">{{ form.password.label }}:</label>
+  {{ form.password }}
+  {{ form.password.errors }}
+  </div>
+  <div style="margin-bottom: 10px;"><a href="{% url 'password_reset' %}">Forgot password?</a></div>
+  <input class="btn btn-lg btn-block btn-primary" type="submit" value="Login" />
+</form>

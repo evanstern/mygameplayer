@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="frontpage">
+<div class="mgp-banner mgp-banner-lg">
+  <div class="container">
+    <span class="glyphicon glyphicon-king"></span>
+    <h1>{{ site.name }}</h1>
+    <p>Play your games <strike>your</strike> my way</p>
+  </div>
+</div>
+<div id="mainContent" class="mgp-container">
+  <div id="mainContentLeft" class="mgp-content">
+    {% include 'mygameplayer/_quicklinks.html' %}
+  </div>
+  <div id="mainContentCenter" class="mgp-content">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget
+        ligula in nisi dapibus efficitur vitae non lorem. Donec eu laoreet
+        massa, non tristique ligula.</p>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget
+        ligula in nisi dapibus efficitur vitae non lorem. Donec eu laoreet
+        massa, non tristique ligula.</p>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget
+        ligula in nisi dapibus efficitur vitae non lorem. Donec eu laoreet
+        massa, non tristique ligula.</p>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget
+        ligula in nisi dapibus efficitur vitae non lorem. Donec eu laoreet
+        massa, non tristique ligula.</p>
+      </div>
+    </div>
+  </div>
+  <div id="mainContentRight" class="mgp-content">
+    <div id="loginForm" class="control">
+      {% include 'registration/_login_form.html' %}
+    </div>
+    <div id="newUser" class="control">
+      <label>Need an account?</label>
+      <p>Sign up now!</p>
+      <a href="{% url "register" %}" class="btn btn-lg btn-block btn-primary">Sign up</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <ul>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Support</a></li>
+    <li><span>&copy; 2015 mygameplayer</span></li>
+  </ul>
+</footer>
+</div>
+{% endblock %}

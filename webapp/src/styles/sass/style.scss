@@ -1,0 +1,26 @@
+// Screen
+// ======
+
+@import '_bootstrap_custom';
+@import 'base';
+@import '_variables.scss';
+
+.profile-page {
+    @import "_profile";
+}
+
+.login-page {
+  form#login-form {
+    @extend .center-form;
+  }
+}
+
+.registration-page {
+  form#registration-form {
+    @extend .center-form;
+  }
+}
+
+.frontpage {
+    @import "_frontpage";
+}

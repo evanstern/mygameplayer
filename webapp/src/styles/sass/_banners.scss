@@ -1,0 +1,28 @@
+// Banners
+
+@import "compass";
+@import "compass/utilities/color/contrast";
+
+.login-form {
+  @import "_login";
+}
+
+.mgp-banner {
+  @extend .text-center;
+  background-color: $brand-primary;
+  color: contrast-color($brand-primary);
+  font-size: $font-size-h3;
+
+  @include background-image(linear-gradient(to right, $brand-primary, darken($brand-primary, 25%)));
+
+  p {
+    opacity: .5;
+  }
+}
+
+.mgp-banner-lg {
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
+
+

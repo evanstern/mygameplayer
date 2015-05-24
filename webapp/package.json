@@ -1,0 +1,29 @@
+{
+  "name": "mygameplayer",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "src": "src",
+  "devDest": ".tmp",
+  "sassDir": "src/styles/sass",
+  "cssDir": ".tmp/css",
+  "bowerDir": "./bower_components",
+  "fontsDir": ".tmp/fonts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt-browserify": "^3.8.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-compass": "^1.0.3",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-tasks": "^3.1.0"
+  },
+  "dependencies": {
+    "backbone": "^1.2.0",
+    "jquery": "^2.1.4"
+  }
+}

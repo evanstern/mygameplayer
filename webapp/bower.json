@@ -1,0 +1,19 @@
+{
+  "name": "mygameplayer",
+  "version": "0.1.0",
+  "homepage": "https://github.com/evanstern/mygameplayer",
+  "authors": [
+    "Evan Stern <evanmicahstern@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.4"
+  }
+}
