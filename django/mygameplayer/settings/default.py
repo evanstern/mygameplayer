@@ -42,6 +42,7 @@ PREREQ_APPS = [
 PROJECT_APPS = [
     'mygameplayer',
     'accounts',
+    'games',
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
