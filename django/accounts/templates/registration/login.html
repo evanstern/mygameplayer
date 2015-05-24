@@ -2,6 +2,9 @@
 {% load staticfiles %}
 {% block content %}
 <div class="login-page">
+<form id="login-form" action="{% url 'login' %}" method="post">
+  {% csrf_token %}
   {% include 'registration/_login_form.html' %}
+</form>
 </div>
 {% endblock %}

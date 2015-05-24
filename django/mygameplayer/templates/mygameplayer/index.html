@@ -44,7 +44,10 @@
   </div>
   <div id="mainContentRight" class="mgp-content">
     <div id="loginForm" class="control">
-      {% include 'registration/_login_form.html' %}
+      <form id="login-form" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {% include 'registration/_login_form.html' %}
+      </form>
     </div>
     <div id="newUser" class="control">
       <label>Need an account?</label>
