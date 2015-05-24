@@ -6,15 +6,15 @@ from django.utils import timezone
 from django.db import models
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name="", last_name="", password=None):
+    def create_user(self, email, username, first_name="", last_name="", password=None):
         email = self.normalize_email(email)
         user = self.model(email=email, first_name=first_name, last_name=last_name)
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(self, email, first_name, last_name, password):
-        user = self.create_user(email, first_name=first_name,
+    def create_superuser(self, email, username, first_name, last_name, password):
+        user = self.create_user(email, username, first_name=first_name,
                                 last_name=last_name, password=password)
         user.is_staff = True
         user.is_superuser = True
@@ -24,6 +24,8 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=256, unique=True, db_index=True,
                               help_text="your@email.address",)
+    username = models.CharField(max_length=256, help_text="Your user name",
+                                db_index=True, unique=True)
     first_name = models.CharField(max_length=256, help_text="Your first name")
     last_name = models.CharField(max_length=256, help_text="Your last name")
     is_staff = models.BooleanField(default=False)

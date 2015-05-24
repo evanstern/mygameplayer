@@ -6,6 +6,11 @@
     {{ register_form.email }}
     {{ register_form.email.errors }}
   </div>
+  <div class="form-group {% if register_form.username.errors %}has-error{% endif %}">
+    <label for="{{ register_form.username.id_for_label }}">{{ register_form.username.label }}</label>
+    {{ register_form.username }}
+    {{ register_form.username.errors }}
+  </div>
   <div class="form-group {% if register_form.first_name.errors %}has-error{% endif %}">
     <label for="{{ register_form.first_name.id_for_label }}">{{ register_form.first_name.label }}</label>
     {{ register_form.first_name }}

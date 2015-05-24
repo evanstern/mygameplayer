@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import REDIRECT_FIELD_NAME, get_user_model
 from django.contrib.auth.views import login as auth_login
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
 from .forms import AuthenticationForm, RegistrationForm
@@ -44,4 +45,10 @@ def register_confirm(request, activation_key):
     user.save()
 
     return render(request, "registration/new_user_confirm.html", dict(user=user))
+
+def account_home(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    context = dict(account=user, user=request.user,
+                   is_authenticated=request.user.is_authenticated())
+    return render(request, "accounts/home.html", context,)
 

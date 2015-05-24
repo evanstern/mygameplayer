@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Welcome to {{account.username}}'s page</h1>
+{% if account == user %}<h3>you are {{ account.username }}</h3>{% endif %}
+{% if is_authenticated %}<h3>you are authenticated</h3>{% endif %}
+{% endblock %}

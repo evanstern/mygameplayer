@@ -26,6 +26,10 @@ class RegistrationForm(UserCreationForm):
         "class": "form-control",
         "placeholder": "your@email.address",
     }), required=True,)
+    username = forms.CharField(label=_("Username"), widget=widgets.TextInput(attrs={
+        "class": "form-control",
+        "placeholder": "username",
+    }), required=True,)
     first_name = forms.CharField(label=_("First name"), widget=widgets.TextInput(attrs={
         "class": "form-control",
         "placeholder": "First name",
@@ -94,7 +98,7 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ["first_name", "last_name", "email", "password1", "password2"]
+        fields = ["first_name", "last_name", "email", "username", "password1", "password2"]
 
 
 
