@@ -11,9 +11,12 @@ var CampaignRow = React.createClass({displayName: "CampaignRow",
 
   render: function() {
     var name = this.props.campaign.get('name');
+    var id = this.props.campaign.get('id');
+    var href = 'campaign/' + id;
     return (
       React.createElement("li", {className: "campaign-name list-group-item"}, 
         React.createElement("span", null, name), 
+        React.createElement("a", {href: href}, React.createElement("span", {className: "glyphicon glyphicon-pencil"})), 
         React.createElement("span", {onClick: this.handleClick, className: "campaign-delete glyphicon glyphicon-remove"})
       )
     );

@@ -37,7 +37,7 @@ var CampaignForm = React.createBackboneClass({
 
 var CreateCampaignComponent = React.createBackboneClass({
   render: function() {
-    var campaign = window.campaign = new CampaignModel();
+    var campaign = new CampaignModel();
     return (
       React.createElement("div", {className: "create-campaign-screen"}, 
         React.createElement("div", {className: "content-area"}, 

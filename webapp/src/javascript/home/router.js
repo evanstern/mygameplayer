@@ -19,12 +19,13 @@ var $ = Backbone.$;
     }
   };
 
-  $(document).on("click", "a[href!=#]:not([data-bypass])", dataBypass);
-})($, window)
+  $(document).on('click', 'a[href!=#]:not([data-bypass])', dataBypass);
+})($, window);
 
 var Router = BackboneRouteControl.extend({
   routes: {
     '': 'home#index',
+    'campaign/:id': 'home#campaign',
     'campaign/create': 'home#createCampaign',
   }
 });
