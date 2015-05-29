@@ -1,9 +1,12 @@
-import datetime
+import datetime, json, hashlib
 
+from django.core import serializers
 from django.contrib import admin
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from django.db import models
+
+from mygameplayer.models import AbstractBaseModel, SerializeMixin
 
 class UserManager(BaseUserManager):
     def create_user(self, email, username, first_name="", last_name="", password=None):
@@ -21,7 +24,7 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin, SerializeMixin):
     email = models.EmailField(max_length=256, unique=True, db_index=True,
                               help_text="your@email.address",)
     username = models.CharField(max_length=256, help_text="Your user name",
@@ -35,12 +38,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
+    SERIALIZE_EXCLUDE = ["password"]
 
     def get_full_name(self):
         return self.first_name + " " + self.last_name
 
     def get_short_name(self):
         return self.first_name[0] + self.last_name
+
+    def serialize(self, *args, **kwargs):
+        serialized = super(User, self).serialize(*args, **kwargs)
+        serialized["fields"]["gravatar_hash"] = hashlib.md5(self.email.lower()).hexdigest()
+        return serialized
 
     class Meta:
         app_label = "accounts"
@@ -57,10 +66,14 @@ class UserAdmin(admin.ModelAdmin):
 
 admin.site.register(User, UserAdmin)
 
-class UserProfile(models.Model):
+class UserProfile(AbstractBaseModel, SerializeMixin):
     user = models.OneToOneField("accounts.User", related_name="profile")
     activation_key = models.CharField(max_length=40, blank=True)
     key_expires = models.DateTimeField(default=timezone.now)
+
+    campaigns = models.ManyToManyField("campaign.Campaign")
+
+    SERIALIZE_EXCLUDE = ["activation_key", "key_expires"]
 
     class Meta:
         app_label = "accounts"

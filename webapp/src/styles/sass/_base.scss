@@ -17,3 +17,17 @@ ul.link-list {
         margin-bottom: $line-height-computed;
     }
 }
+
+.main-content {
+    @extend .container;
+}
+
+// Prevent the FOUC
+.no-js {
+    display: none;
+}
+
+.list-unstyled {
+    list-style: none;
+    padding: 0;
+}

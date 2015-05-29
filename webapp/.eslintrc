@@ -1,0 +1,25 @@
+{
+  "parser": "babel-eslint",
+
+  "rules": {
+    "capIsNew": false,
+    "newIsCap": false,
+    "quotes": [1, "single"],
+    "no-unused-vars": 0,
+    "string": [2, "global"]
+  },
+
+  "settings": {
+    "ecmascript": 6,
+    "jsx": true,
+  },
+
+  "plugins": [
+    "react"
+  ],
+
+  "globals": {
+    "require": false,
+    "window": false,
+  }
+}

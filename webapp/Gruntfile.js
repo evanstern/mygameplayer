@@ -8,13 +8,23 @@ module.exports = function(grunt) {
     pkg: pkgConfig,
 
     browserify: {
+      options: {
+        transform: [ require('grunt-react').browserify ],
+        alias: {
+          'underscore': 'lodash'
+        }
+      },
       main: {
-        src: '<%= pkg.src %>/main/js/index.js',
-        dest: '<%= pkg.devDest %>/main/js/main.js'
+        src: '<%= pkg.src %>/javascript/main/index.js',
+        dest: '<%= pkg.devDest %>/javascript/main/main.js'
       },
       accounts: {
-        src: '<%= pkg.src %>/accounts/js/index.js',
-        dest: '<%= pkg.devDest %>/accounts/js/main.js'
+        src: '<%= pkg.src %>/javascript/accounts/index.js',
+        dest: '<%= pkg.devDest %>/javascript/accounts/main.js'
+      },
+      home: {
+        src: '<%= pkg.src %>/javascript/home/index.js',
+        dest: '<%= pkg.devDest %>/javascript/home/main.js'
       }
     },
 
@@ -30,25 +40,43 @@ module.exports = function(grunt) {
       }
     },
 
+    react: {
+      files: {
+        expand: true,
+        cwd: '<%= pkg.src %>/javascript/',
+        src: '**/*.jsx',
+        dest: '<%= pkg.src %>/javascript/',
+        ext: '.js'
+      }
+    },
+
     watch: {
-      mainjs : {
-        files: ['<%= pkg.src %>/main/js/{,*/}*.js'],
+      mainjs: {
+        files: ['<%= pkg.src %>/javascript/main/{,*/}*.js'],
         tasks: ['browserify:main'],
         options: {
-          livereload: true,
+          livereload: true
         }
       },
       accountsjs: {
-        files: ['<%= pkg.src %>/accounts/js/{,*/}*.js'],
+        files: ['<%= pkg.src %>/javascript/accounts/{,*/}*.js'],
         tasks: ['browserify:accounts']
+      },
+      homejs: {
+        files: ['<%= pkg.src %>/javascript/home/**/*.js'],
+        tasks: ['browserify:home']
+      },
+      react: {
+        files: ['<%= pkg.src %>/javascript/**/*.jsx'],
+        tasks: ['react']
       },
       scss: {
         files: ['<%= pkg.sassDir %>/{,*/}*.scss'],
         tasks: ['compass:dev'],
         options: {
-          livereload: true,
+          livereload: true
         }
-      },
+      }
     },
 
     copy: {
@@ -72,7 +100,7 @@ module.exports = function(grunt) {
     'browserify',
     'compass:dev',
     'copy:collectstatic',
-    'watch',
+    'watch'
   ]);
 
 };

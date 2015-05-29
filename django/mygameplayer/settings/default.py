@@ -40,9 +40,11 @@ PREREQ_APPS = [
 ]
 
 PROJECT_APPS = [
+    'tastypie',
     'mygameplayer',
     'accounts',
     'games',
+    'campaign',
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS

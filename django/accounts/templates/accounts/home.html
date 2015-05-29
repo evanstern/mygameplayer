@@ -1,6 +1,39 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block content %}
-<h1>Welcome to {{account.username}}'s page</h1>
-{% if account == user %}<h3>you are {{ account.username }}</h3>{% endif %}
-{% if is_authenticated %}<h3>you are authenticated</h3>{% endif %}
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navbar</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">MGP</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav nav-pills">
+        <li><a href="#">Link</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="main-content">
+
+</div>
+<footer class="">
+
+</footer>
 {% endblock %}
+
+{% block bodyscripts %}
+<script type="text/javascript">
+  (function(root) {
+    root.MGP || (root.MGP = {});
+    root.MGP.bootstrap = {{ serialized|safe }};
+  })(window)
+</script>
+<script type="text/javascript" src="{% static 'javascript/home/main.js' %}"></script>
+{% endblock %}
+

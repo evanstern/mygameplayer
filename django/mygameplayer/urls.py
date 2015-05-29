@@ -19,6 +19,12 @@ from django.contrib import admin
 
 from . import views
 
+_api_patterns = []
+from accounts.api import UserResource
+_api_patterns += UserResource().urls
+from campaign.api import CampaignResource
+_api_patterns += CampaignResource().urls
+
 urlpatterns = [
     url(r"^$", views.index, name="home"),
     url(r"^admin/", include(admin.site.urls)),
@@ -26,6 +32,7 @@ urlpatterns = [
     url(r"^contact/", views.contact, name="contact"),
     url(r"^support/", views.support, name="support"),
     url(r"^accounts/", include("accounts.urls")),
+    url(r"^api/", include(_api_patterns)),
 ]
 
 if settings.DEBUG:

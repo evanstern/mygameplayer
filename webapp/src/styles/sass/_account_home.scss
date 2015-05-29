@@ -1,0 +1,63 @@
+@import "compass/css3/border-radius";
+
+& {
+    background-color: $account-home-background-color;
+}
+
+.main-content {
+    margin-top: $navbar-height;
+}
+
+.content-area {
+    background-color: white;
+    margin-top: $line-height-computed;
+    @include border-radius($border-radius-base, $border-radius-base);
+    padding: $padding-base-vertical $padding-base-horizontal;
+}
+
+.content-left {
+    @include span(3 of 12);
+}
+
+.content-center {
+    @include span(6 of 12);
+}
+
+.content-right {
+    @include span(3 of 12 last);
+}
+
+footer {
+    // just to allow some give at the bottom of the page
+    margin-bottom: 100px;
+}
+
+.user-icon {
+    img {
+        @include border-radius(40px);
+    }
+}
+
+.user-details {
+    @include container(3);
+    span {
+        @include span(1 of 3);
+        @extend .text-center;
+        &:last-child {
+            @include span(1 of 3 last);
+        }
+    }
+}
+
+.campaigns-panel {
+    ul {
+        @extend .list-unstyled;
+    }
+
+    li {
+        .glyphicon {
+            @extend .pull-right;
+            cursor: pointer;
+        }
+    }
+}
