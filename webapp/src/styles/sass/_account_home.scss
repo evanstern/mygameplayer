@@ -61,3 +61,10 @@ footer {
         }
     }
 }
+
+.create-campaign-screen {
+  .campaign-form {
+    @include container(4 40em);
+    margin: 0 auto;
+  }
+}

@@ -3,7 +3,7 @@
 var Backbone = require('backbone');
 
 var CampaignModel = Backbone.Model.extend({
-  urlRoot: '/api/campaign'
+  urlRoot: '/api/campaign/'
 });
 
 module.exports = CampaignModel;
