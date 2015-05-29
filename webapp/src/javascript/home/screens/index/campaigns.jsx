@@ -37,7 +37,7 @@ var CampaignsComponent = React.createBackboneClass({
           {campaignList}
         </ul>
         <div className="campaign-controls">
-          <button className="btn btn-lg btn-block btn-primary" id="new-campaign">Start new campaign</button>
+          <a href="campaign/create" className="btn btn-lg btn-block btn-primary" id="new-campaign">Start new campaign</a>
         </div>
       </div>
     )

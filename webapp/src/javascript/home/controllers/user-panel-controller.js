@@ -3,6 +3,7 @@
 var Backbone = require('backbone');
 var _ = require('lodash');
 var IndexView = require('../screens/index/index');
+var CreateCampaignScreen = require('../screens/create-campaign/index');
 var Campaigns = require('../collections/campaigns');
 
 var User = Backbone.Model.extend({
@@ -27,6 +28,13 @@ var UserPanelControler = function(options) {
       });
       campaigns.fetch();
       app.mainView.pageRender(indexView);
+    },
+
+    createCampaign: function() {
+      var createCampaignScreen = new CreateCampaignScreen({
+        user: user
+      });
+      app.mainView.pageRender(createCampaignScreen);
     }
   };
 };

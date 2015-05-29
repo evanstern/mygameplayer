@@ -12,6 +12,6 @@ urlpatterns = [
     url(r"^profile/?$", "accounts.views.profile", name="profile"),
     url(r"^register/?$", "accounts.views.register", name="register"),
     url(r"^register/confirm/(?P<activation_key>\w+)$", "accounts.views.register_confirm", name="register_confirm"),
-    url(r"^(?P<username>[0-9A-Za-z_\-]+)/$", "accounts.views.account_home", name="account_home"),
+    url(r"^(?P<username>[0-9A-Za-z_\-]+)/.*$", "accounts.views.account_home", name="account_home"),
 ]
 

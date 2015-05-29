@@ -37,7 +37,7 @@ var CampaignsComponent = React.createBackboneClass({
           campaignList
         ), 
         React.createElement("div", {className: "campaign-controls"}, 
-          React.createElement("button", {className: "btn btn-lg btn-block btn-primary", id: "new-campaign"}, "Start new campaign")
+          React.createElement("a", {href: "campaign/create", className: "btn btn-lg btn-block btn-primary", id: "new-campaign"}, "Start new campaign")
         )
       )
     )
