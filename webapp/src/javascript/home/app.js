@@ -23,18 +23,19 @@ Application.prototype.initialize = function() {
   });
 
   this.mainView = new MainView({
-    el: $(".main-content"),
+    el: $('.main-content'),
     router: this.router
   });
 };
 
 Application.prototype.run = function() {
   this.mainView.render();
+  var username = this.bootstrap.user.fields.username;
   Backbone.history.start({
     pushState: true,
-    root: '/accounts/superuser/'
+    root: '/accounts/' + username + '/'
   });
-  $("body").removeClass("no-js");
+  $('body').removeClass('no-js');
 };
 
 module.exports = Application;

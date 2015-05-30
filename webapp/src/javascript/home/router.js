@@ -25,8 +25,8 @@ var $ = Backbone.$;
 var Router = BackboneRouteControl.extend({
   routes: {
     '': 'home#index',
-    'campaign/:id': 'home#campaign',
     'campaign/create': 'home#createCampaign',
+    'campaign/:id': 'home#campaign',
   }
 });
 

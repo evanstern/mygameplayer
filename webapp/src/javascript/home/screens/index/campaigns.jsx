@@ -5,10 +5,6 @@ var React = require('react');
 var ReactBackbone = require('react.backbone');
 
 var CampaignRow = React.createClass({
-  handleClick: function(event) {
-    this.props.campaign.destroy();
-  },
-
   render: function() {
     var name = this.props.campaign.get('name');
     var id = this.props.campaign.get('id');
@@ -17,7 +13,6 @@ var CampaignRow = React.createClass({
       <li className="campaign-name list-group-item">
         <span>{name}</span>
         <a href={href}><span className="glyphicon glyphicon-pencil"></span></a>
-        <span onClick={this.handleClick} className="campaign-delete glyphicon glyphicon-remove"></span>
       </li>
     );
   }

@@ -5,10 +5,6 @@ var React = require('react');
 var ReactBackbone = require('react.backbone');
 
 var CampaignRow = React.createClass({displayName: "CampaignRow",
-  handleClick: function(event) {
-    this.props.campaign.destroy();
-  },
-
   render: function() {
     var name = this.props.campaign.get('name');
     var id = this.props.campaign.get('id');
@@ -16,8 +12,7 @@ var CampaignRow = React.createClass({displayName: "CampaignRow",
     return (
       React.createElement("li", {className: "campaign-name list-group-item"}, 
         React.createElement("span", null, name), 
-        React.createElement("a", {href: href}, React.createElement("span", {className: "glyphicon glyphicon-pencil"})), 
-        React.createElement("span", {onClick: this.handleClick, className: "campaign-delete glyphicon glyphicon-remove"})
+        React.createElement("a", {href: href}, React.createElement("span", {className: "glyphicon glyphicon-pencil"}))
       )
     );
   }
