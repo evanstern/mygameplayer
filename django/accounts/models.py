@@ -27,8 +27,6 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin, SerializeMixin):
     email = models.EmailField(max_length=256, unique=True, db_index=True,
                               help_text="your@email.address",)
-    username = models.CharField(max_length=256, help_text="Your user name",
-                                db_index=True, unique=True)
     first_name = models.CharField(max_length=256, help_text="Your first name")
     last_name = models.CharField(max_length=256, help_text="Your last name")
     is_staff = models.BooleanField(default=False)
@@ -70,6 +68,8 @@ class UserProfile(AbstractBaseModel, SerializeMixin):
     user = models.OneToOneField("accounts.User", related_name="profile")
     activation_key = models.CharField(max_length=40, blank=True)
     key_expires = models.DateTimeField(default=timezone.now)
+
+    player_name = models.CharField(max_length=256, blank=True, db_index=True,)
 
     campaigns = models.ManyToManyField("campaign.Campaign")
 

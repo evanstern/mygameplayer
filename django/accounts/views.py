@@ -17,7 +17,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.response import TemplateResponse
 
-from .forms import AuthenticationForm, RegistrationForm
+from .forms import AuthenticationForm, RegistrationForm, UserProfileForm
 from .models import UserProfile
 
 def profile(request):
@@ -45,7 +45,7 @@ def login(request, template_name='registration/login.html',
 
             # Ensure the user-originating redirection url is save.
             if not is_safe_url(url=redirect_to, host=request.get_host()):
-                redirect_to = reverse("account_home", args=[request.user.username])
+                redirect_to = reverse("account_home", args=[request.user.profile.player_name])
 
             return HttpResponseRedirect(redirect_to)
     else:
@@ -74,13 +74,19 @@ def register(request):
     """
     if request.method == "POST":
         form = RegistrationForm(request.POST)
-        if form.is_valid():
+        user_profile_form = UserProfileForm(request.POST)
+        if form.is_valid() and user_profile_form.is_valid():
             email = form.cleaned_data["email"]
-            form.save(request)
+            player_name = user_profile_form.cleaned_data["player_name"]
+            user = form.save(request)
+            user.profile.player_name = player_name
+            user.profile.save()
             return render(request, "registration/new_user_email_confirm.html",
                           dict(email=email))
     form = RegistrationForm()
-    return render(request, "registration/new_user.html", dict(register_form=form))
+    user_profile_form = UserProfileForm()
+    return render(request, "registration/new_user.html", dict(register_form=form,
+                                                              user_profile_form=user_profile_form,))
 
 def register_confirm(request, activation_key):
     """
@@ -88,7 +94,7 @@ def register_confirm(request, activation_key):
     pages.
     """
     if request.user.is_authenticated():
-        HttpResponseRedirect(reverse("account_home", args=[request.user.username]))
+        HttpResponseRedirect(reverse("account_home", args=[request.user.profile.player_name]))
 
     user_profile = get_object_or_404(UserProfile, activation_key=activation_key)
     if user_profile.key_expires < timezone.now():
@@ -102,11 +108,12 @@ def register_confirm(request, activation_key):
 
     return render(request, "registration/new_user_confirm.html", dict(user=user))
 
-def account_home(request, username):
+def account_home(request, player_name):
     """
     Display the "home" page for an account
     """
-    user = get_object_or_404(get_user_model(), username=username)
+    user_profile = get_object_or_404(UserProfile, player_name=player_name)
+    user = user_profile.user
     serialized = json.dumps(dict(
         user=request.user.serialize(),
         profile=request.user.profile.serialize(),

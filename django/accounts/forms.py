@@ -11,6 +11,8 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.forms import widgets, ModelForm
 from django.template import loader
 
+from accounts.models import UserProfile
+
 class AuthenticationForm(BaseAuthenticationForm):
     username = forms.CharField(label=_("Email"), widget=widgets.TextInput(attrs={
         "class": "form-control",
@@ -21,14 +23,25 @@ class AuthenticationForm(BaseAuthenticationForm):
         "placeholder": "Password",
     }), required=True,)
 
+class UserProfileForm(ModelForm):
+    player_name = forms.CharField(label=_("Player name"), widget=widgets.TextInput(attrs={
+        "class": "form-control",
+        "placeholder": "Player name",
+    }), required=True,)
+
+    def save(self, request, user=None, commit=True):
+        # disable this entirely, handle profile stuff in the view itself
+        assert False
+        return None
+
+    class Meta:
+        model = UserProfile
+        fields = ["player_name",]
+
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(label=("Email (this will be your username)"), widget=widgets.TextInput(attrs={
         "class": "form-control",
         "placeholder": "your@email.address",
-    }), required=True,)
-    username = forms.CharField(label=_("Username"), widget=widgets.TextInput(attrs={
-        "class": "form-control",
-        "placeholder": "username",
     }), required=True,)
     first_name = forms.CharField(label=_("First name"), widget=widgets.TextInput(attrs={
         "class": "form-control",
@@ -98,7 +111,7 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ["first_name", "last_name", "email", "username", "password1", "password2"]
+        fields = ["first_name", "last_name", "email", "password1", "password2"]
 
 
 

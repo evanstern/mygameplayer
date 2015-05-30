@@ -11,5 +11,18 @@ class Campaign(models.Model):
     date_ended = models.DateTimeField(help_text=("When the campaign ended"), null=True, default=None)
     name = models.CharField(max_length=256, help_text=("The name of this campaign"),)
 
+    user_profiles = models.ManyToManyField("accounts.UserProfile", through="campaign.Players")
+
     class Meta:
         app_label = "campaign"
+
+class Players(models.Model):
+    """
+    A player is a user (profile) involved in a campaign
+    """
+    user_profile = models.ForeignKey("accounts.UserProfile")
+    campaign = models.ForeignKey("campaign.Campaign")
+
+    class Meta:
+        app_label = "campaign"
+

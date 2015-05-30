@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>You are now registered! Good for you!</h1>
-<a href="{% url 'account_home' user.username %}">Go to your profile page</a>
+<a href="{% url 'account_home' user.profile.player_name %}">Go to your profile page</a>
 {% endblock %}
