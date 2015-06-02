@@ -25,6 +25,8 @@ _api_patterns += UserResource().urls
 _api_patterns += UserProfileResource().urls
 from campaign.api import CampaignResource
 _api_patterns += CampaignResource().urls
+from games.api import GameResource
+_api_patterns += GameResource().urls
 
 urlpatterns = [
     url(r"^$", views.index, name="home"),

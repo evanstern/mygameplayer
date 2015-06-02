@@ -10,6 +10,7 @@ from campaign import models as campaignmodels
 class CampaignResource(ModelBase):
     owner = fields.ForeignKey("accounts.api.UserProfileResource", "owner", full=True)
     players = fields.ToManyField("accounts.api.UserProfileResource", "players", full=True, null=True)
+    matches = fields.ToManyField("games.api.MatchResource", "matches", full=True, null=True)
 
     class Meta:
         queryset = campaignmodels.Campaign.objects.all()
@@ -22,7 +23,11 @@ class CampaignResource(ModelBase):
             url(r'^(?P<resource_name>%s)/(?P<pk>\w[\w/-]*)/players%s$' % (
                 self._meta.resource_name, trailing_slash(),
             ), self.wrap_view("get_players"),
-            name="api_get_players_for_campaign",)
+            name="api_get_players_for_campaign",),
+            url(r'^(?P<resource_name>%s)/(?P<pk>\w[\w/-]*)/matches%s$' % (
+                self._meta.resource_name, trailing_slash(),
+            ), self.wrap_view("get_matches"),
+            name="api_get_matches_for_campaign",),
         ]
 
     def get_players(self, request, **kwargs):
@@ -45,6 +50,11 @@ class CampaignResource(ModelBase):
             return user_profile_resource.get_detail(request, pk=profile.pk)
 
         return UserProfileResource().get_list(request, campaigns=kwargs["pk"])
+
+    def get_matches(self, request, **kwargs):
+        self.method_check(request, ["get",])
+        from games.api import MatchResource
+        return MatchResource().get_detail(request, campaign=kwargs["pk"])
 
     def get_object_list(self, request):
         return super(CampaignResource, self).get_object_list(request).filter(owner=request.user.profile)
