@@ -30,10 +30,10 @@ Application.prototype.initialize = function() {
 
 Application.prototype.run = function() {
   this.mainView.render();
-  var username = this.bootstrap.user.fields.username;
+  var playerName = this.bootstrap.profile.fields.player_name; //jshint ignore:line
   Backbone.history.start({
     pushState: true,
-    root: '/accounts/' + username + '/'
+    root: '/accounts/' + playerName + '/'
   });
   $('body').removeClass('no-js');
 };

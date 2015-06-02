@@ -68,3 +68,19 @@ footer {
     margin: 0 auto;
   }
 }
+
+.campaign-screen {
+  form {
+    .form-group {
+      .help-block {
+        display: none;
+      }
+
+      &.has-error {
+        .help-block {
+          display: block;
+        }
+      }
+    }
+  }
+}

@@ -20,8 +20,9 @@ from django.contrib import admin
 from . import views
 
 _api_patterns = []
-from accounts.api import UserResource
+from accounts.api import UserResource, UserProfileResource
 _api_patterns += UserResource().urls
+_api_patterns += UserProfileResource().urls
 from campaign.api import CampaignResource
 _api_patterns += CampaignResource().urls
 

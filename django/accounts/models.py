@@ -71,8 +71,6 @@ class UserProfile(AbstractBaseModel, SerializeMixin):
 
     player_name = models.CharField(max_length=256, blank=True, db_index=True,)
 
-    campaigns = models.ManyToManyField("campaign.Campaign")
-
     SERIALIZE_EXCLUDE = ["activation_key", "key_expires"]
 
     class Meta:
