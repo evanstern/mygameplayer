@@ -1,14 +1,14 @@
 'use strict';
 
 var Backbone = require('backbone');
-var Player = require('../models/player');
+var Match = require('../models/match');
 
-var Players = Backbone.Collection.extend({
+var Matches = Backbone.Collection.extend({
   url: function() {
-    return this.campaign.url() + '/players/';
+    return this.campaign.url() + '/matches/';
   },
 
-  model: Player,
+  model: Match,
 
   initialize: function(models, options) {
     Backbone.Collection.prototype.initialize.call(this, models, options);
@@ -16,4 +16,4 @@ var Players = Backbone.Collection.extend({
   }
 });
 
-module.exports = Players;
+module.exports = Matches;
