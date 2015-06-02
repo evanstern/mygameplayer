@@ -9,7 +9,8 @@ The technology being used is as follows:
 
 **Back end**
 * Django 1.8
-* PostgreSQL 9.3
+* Tastypie (REST)
+* PostgreSQL 9.3 
 
 **Front end**
 * ReactJS
